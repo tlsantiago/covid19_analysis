@@ -25,7 +25,7 @@ ORDER BY 1, 2
 -- Percentage of population infected daily
 
 
-SELECT Location, date, Population, total_cases, (total_cases/population)*100 as InfectedPercentage
+SELECT Location, date, Population, total_cases, cast((total_cases/population)*100 as decimal(10,3)) as InfectedPercentage
 FROM covid19.dbo.worldData
 ORDER BY 1, 2
 
@@ -33,7 +33,7 @@ ORDER BY 1, 2
 -- Percentage of deaths by population daily
 
 
-SELECT Location, date, Population, total_deaths, (total_deaths/population)*100 as DeathPercentage
+SELECT Location, date, Population, total_deaths, cast((total_deaths/population)*100 as decimal(10,3)) as DeathPercentage
 FROM covid19.dbo.worldData
 ORDER BY 1, 2
 
@@ -41,7 +41,7 @@ ORDER BY 1, 2
 -- Likelihood of dying daily
 
 
-SELECT Location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
+SELECT Location, date, total_cases, total_deaths, cast((total_deaths/total_cases)*100 as decimal(10,3)) as DeathPercentage
 FROM covid19.dbo.worldData
 ORDER BY 1, 2
 
@@ -49,7 +49,7 @@ ORDER BY 1, 2
 -- Countries with highest infection rate compared to population
 
 
-SELECT Location, Population, MAX(total_cases) as HighestInfectionCount, MAX((total_cases/population))*100 as InfectionPercentage
+SELECT Location, Population, MAX(total_cases) as HighestInfectionCount, cast(MAX((total_cases/population))*100 as decimal(10,3)) as InfectionPercentage
 FROM covid19.dbo.worldData
 GROUP BY Location, Population
 ORDER BY InfectionPercentage desc
@@ -59,7 +59,7 @@ ORDER BY InfectionPercentage desc
 
 
 SELECT location, MAX(cast(total_deaths as int)) as TotalDeathCount, MAX(cast(Population as float)) as TotalPopulation,
-	   (MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as TotalDeathPercentage
+	   cast((MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalDeathPercentage
 
 FROM covid19.dbo.worldData
 WHERE 
@@ -80,7 +80,7 @@ ORDER BY TotalDeathPercentage desc
 SELECT location,
 	   MAX(cast(total_cases as int)) as TotalCasesCount, 
 	   MAX(cast(Population as float)) as TotalPopulation,
-	   (MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as TotalInfectionPercentage,
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	    MAX(cast(stringency_index as float)) as StringencyIndexMax
 
 
@@ -103,9 +103,9 @@ ORDER BY StringencyIndexMax desc
 SELECT location, 
 		MAX(cast(total_deaths as int)) as TotalDeathCount, 
 		MAX(cast(Population as float)) as TotalPopulation,
-	   (MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as TotalDeathPercentage,
-	   (MAX(cast(total_deaths as int)) /  MAX(cast(total_cases as float)))*100 as TotalDeathLikelihood,
-		MAX(cast(median_age as float)) as MedianAge
+	    cast((MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalDeathPercentage,
+	    cast((MAX(cast(total_deaths as int)) /  MAX(cast(total_cases as float)))*100 as decimal(10,3)) as TotalDeathLikelihood,
+	    MAX(cast(median_age as float)) as MedianAge
 
 FROM covid19.dbo.worldData
 WHERE 
@@ -126,8 +126,8 @@ ORDER BY TotalDeathLikelihood desc
 SELECT location, 
 		MAX(cast(total_deaths as int)) as TotalDeathCount, 
 		MAX(cast(Population as float)) as TotalPopulation,
-	   (MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as TotalDeathPercentage,
-	   (MAX(cast(total_deaths as int)) /  MAX(cast(total_cases as float)))*100 as TotalDeathLikelihood,
+	    cast((MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalDeathPercentage,
+	    cast((MAX(cast(total_deaths as int)) /  MAX(cast(total_cases as float)))*100 as decimal(10,3)) as TotalDeathLikelihood,
 		MAX(cast(median_age as float)) as MedianAge,
 		MAX(cast(gdp_per_capita as float)) as PerCapitaGDP,
 		MAX(cast(human_development_index as float)) as HDI,
@@ -152,8 +152,8 @@ ORDER BY TotalDeathLikelihood desc
 SELECT location, 
 		MAX(cast(total_deaths as int)) as TotalDeathCount, 
 		MAX(cast(Population as float)) as TotalPopulation,
-	   (MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as TotalDeathPercentage,
-	   (MAX(cast(total_deaths as int)) /  MAX(cast(total_cases as float)))*100 as TotalDeathLikelihood,
+	    cast((MAX(cast(total_deaths as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalDeathPercentage,
+	    cast((MAX(cast(total_deaths as int)) /  MAX(cast(total_cases as float)))*100 as decimal(10,3)) as TotalDeathLikelihood,
 		MAX(cast(median_age as float)) as MedianAge,
 		MAX(cast(cardiovasc_death_rate as float)) as CardiovascDeathRate,
 		MAX(cast(diabetes_prevalence as float)) as DiabetesPrevalence,
@@ -172,3 +172,5 @@ WHERE
 
 GROUP BY location
 ORDER BY TotalDeathLikelihood desc
+
+
