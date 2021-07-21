@@ -13,3 +13,8 @@ Technologies:
 - SQL
 - Python
 - Tableau
+
+
+------
+
+Data source: [Our World Data - Covid Deaths](https://ourworldindata.org/covid-deaths)
