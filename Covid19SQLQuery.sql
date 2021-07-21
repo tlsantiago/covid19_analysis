@@ -12,7 +12,7 @@ covid19.dbo.worldData
 SELECT 
 Continent, Location, date, 
 total_cases, new_cases, total_deaths, 
-new_deaths, total_vaccinations, people_fully_vaccinated, 
+new_deaths, new_vaccinations, people_fully_vaccinated, 
 stringency_index, population, median_age, 
 gdp_per_capita, human_development_index,extreme_poverty, cardiovasc_death_rate, 
 diabetes_prevalence, female_smokers, male_smokers
@@ -174,3 +174,16 @@ GROUP BY location
 ORDER BY TotalDeathLikelihood desc
 
 
+-- Vaccinations effectiveness (against new cases and new deaths)
+
+
+SELECT Location, date, Population, new_cases,new_deaths, new_vaccinations, people_fully_vaccinated 
+FROM covid19.dbo.worldData
+WHERE 
+	(continent is not null AND location <> 'World') AND
+	(continent is not null AND location <> 'South America') AND
+	(continent is not null AND location <> 'North America') AND
+	(continent is not null AND location <> 'Asia') AND
+	(continent is not null AND location <> 'European Union') AND
+	(continent is not null AND location <> 'Europe')
+ORDER BY 1, 2
