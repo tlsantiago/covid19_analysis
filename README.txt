@@ -17,5 +17,5 @@ Technologies:
 
 ------
 
-Data source: <a href="https://ourworldindata.org/covid-deaths">Our World Data - Covid Deaths</a>
+Data source: <p><a href="https://ourworldindata.org/covid-deaths">Our World Data - Covid Deaths</a><p>
 
