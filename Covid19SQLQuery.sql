@@ -174,16 +174,22 @@ GROUP BY location
 ORDER BY TotalDeathLikelihood desc
 
 
--- Vaccinations effectiveness (against new cases and new deaths)
+-- South America Evaluation
 
 
-SELECT Location, date, Population, new_cases,new_deaths, new_vaccinations, people_fully_vaccinated 
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	    MAX(cast(stringency_index as float)) as StringencyIndexMax
+
+
 FROM covid19.dbo.worldData
+
 WHERE 
-	(continent is not null AND location <> 'World') AND
-	(continent is not null AND location <> 'South America') AND
-	(continent is not null AND location <> 'North America') AND
-	(continent is not null AND location <> 'Asia') AND
-	(continent is not null AND location <> 'European Union') AND
-	(continent is not null AND location <> 'Europe')
-ORDER BY 1, 2
+	(continent = 'South America' AND location <> 'World')
+
+GROUP BY location
+ORDER BY StringencyIndexMax desc
