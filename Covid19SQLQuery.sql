@@ -211,7 +211,7 @@ SELECT location,
 FROM covid19.dbo.worldData
 
 WHERE 
-	(continent = 'North America' AND location <> 'World')
+	(continent = 'North America' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY TotalInfectionPercentage desc
@@ -233,7 +233,7 @@ SELECT location,
 FROM covid19.dbo.worldData
 
 WHERE 
-	(continent = 'Europe' AND location <> 'World')
+	(continent = 'Europe' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY TotalInfectionPercentage desc
@@ -255,7 +255,7 @@ SELECT location,
 FROM covid19.dbo.worldData
 
 WHERE 
-	(continent = 'Asia' AND location <> 'World')
+	(continent = 'Asia' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY TotalInfectionPercentage desc
@@ -277,7 +277,7 @@ SELECT location,
 FROM covid19.dbo.worldData
 
 WHERE 
-	(continent = 'Africa' AND location <> 'World')
+	(continent = 'Africa' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY TotalInfectionPercentage desc
@@ -299,7 +299,7 @@ SELECT location,
 FROM covid19.dbo.worldData
 
 WHERE 
-	(continent = 'Oceania' AND location <> 'World')
+	(continent = 'Oceania' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY TotalInfectionPercentage desc
