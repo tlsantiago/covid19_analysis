@@ -6,6 +6,35 @@ FROM
 covid19.dbo.worldData
 
 
+/*
+__________________________________________________________________________________
+
+
+DATA CLEANING
+We are not going to clean several data, just exclude nulls from "total_deaths"
+and "total_cases" rows. We are doing so to help further calculations.
+We have other informations to be evaluate, but both "total_deaths" and 
+"total_cases" are our top priority. Rows without those informations should not be 
+used.
+
+__________________________________________________________________________________
+
+*/
+
+
+DELETE FROM covid19.dbo.worldData
+WHERE total_deaths is NULL OR total_cases is NULL
+
+/*
+__________________________________________________________________________________
+
+
+GENERAL DATA EXPLORATION
+
+__________________________________________________________________________________
+
+*/
+
 -- Selecting columns to start with
 
 
@@ -173,6 +202,16 @@ WHERE
 GROUP BY location
 ORDER BY TotalDeathLikelihood desc
 
+/*
+__________________________________________________________________________________
+
+
+STARTING THE EVALUATION BY CONTINENT
+
+__________________________________________________________________________________
+
+*/
+
 
 -- South America Evaluation
 
@@ -252,7 +291,7 @@ ORDER BY DeathLikelyhood desc
 SELECT location,
 	   MAX(cast(Population as float)) as TotalPopulation,
 	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
-	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
 	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
@@ -315,3 +354,87 @@ WHERE
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY DeathLikelyhood desc
+
+
+/*
+__________________________________________________________________________________
+
+
+STARTING THE EVALUATION BY CONTINENT - 3 worst and 3 best performing countries
+
+__________________________________________________________________________________
+
+*/
+
+-- South America
+
+SELECT * FROM (
+SELECT top 3 location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
+	 
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent = 'South America' AND location <> 'World')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY DeathLikelyhood desc
+
+) a
+
+UNION 
+
+SELECT * FROM (
+SELECT top 3 location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
+	 
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent = 'South America' AND location <> 'World')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY DeathLikelyhood
+) b
+
+UNION
+
+SELECT * FROM (SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
+
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	location = 'Brazil'
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+) c
+
+ORDER BY DeathLikelyhood
