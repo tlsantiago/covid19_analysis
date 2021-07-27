@@ -215,3 +215,91 @@ WHERE
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY StringencyIndexMax desc
+
+
+-- Europe Evaluation
+
+
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
+		median_age, gdp_per_capita, human_development_index, extreme_poverty
+
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent = 'Europe' AND location <> 'World')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY StringencyIndexMax desc
+
+
+-- Asia Evaluation
+
+
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
+		median_age, gdp_per_capita, human_development_index, extreme_poverty
+
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent = 'Asia' AND location <> 'World')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY StringencyIndexMax desc
+
+
+-- Africa Evaluation
+
+
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
+		median_age, gdp_per_capita, human_development_index, extreme_poverty
+
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent = 'Africa' AND location <> 'World')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY StringencyIndexMax desc
+
+
+-- Oceania Evaluation
+
+
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
+		median_age, gdp_per_capita, human_development_index, extreme_poverty
+
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent = 'Oceania' AND location <> 'World')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY StringencyIndexMax desc
