@@ -183,8 +183,9 @@ SELECT location,
 	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
-	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
-		median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty
 
 FROM covid19.dbo.worldData
 
@@ -204,8 +205,9 @@ SELECT location,
 	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
-	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
-		median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty
 
 
 FROM covid19.dbo.worldData
@@ -226,8 +228,9 @@ SELECT location,
 	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
-	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
-		median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty
 
 
 FROM covid19.dbo.worldData
@@ -248,8 +251,9 @@ SELECT location,
 	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
-	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
-		median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty
 
 
 FROM covid19.dbo.worldData
@@ -270,8 +274,9 @@ SELECT location,
 	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
-	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
-		median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty
 
 
 FROM covid19.dbo.worldData
@@ -292,8 +297,9 @@ SELECT location,
 	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
-	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
-		median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty
 
 
 FROM covid19.dbo.worldData
