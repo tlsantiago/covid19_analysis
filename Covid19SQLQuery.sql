@@ -185,7 +185,9 @@ SELECT location,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
 	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
 	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
-	   median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
+
 
 FROM covid19.dbo.worldData
 
@@ -193,7 +195,7 @@ WHERE
 	(continent = 'South America' AND location <> 'World')
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY TotalInfectionPercentage desc
+ORDER BY DeathLikelyhood desc
 
 
 -- North America Evaluation
@@ -207,7 +209,8 @@ SELECT location,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
 	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
 	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
-	   median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
 
 
 FROM covid19.dbo.worldData
@@ -216,7 +219,7 @@ WHERE
 	(continent = 'North America' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY TotalInfectionPercentage desc
+ORDER BY DeathLikelyhood desc
 
 
 -- Europe Evaluation
@@ -230,7 +233,8 @@ SELECT location,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
 	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
 	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
-	   median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
 
 
 FROM covid19.dbo.worldData
@@ -239,7 +243,7 @@ WHERE
 	(continent = 'Europe' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY TotalInfectionPercentage desc
+ORDER BY DeathLikelyhood desc
 
 
 -- Asia Evaluation
@@ -253,8 +257,8 @@ SELECT location,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
 	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
 	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
-	   median_age, gdp_per_capita, human_development_index, extreme_poverty
-
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
 
 FROM covid19.dbo.worldData
 
@@ -262,7 +266,7 @@ WHERE
 	(continent = 'Asia' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY TotalInfectionPercentage desc
+ORDER BY DeathLikelyhood desc
 
 
 -- Africa Evaluation
@@ -276,7 +280,8 @@ SELECT location,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
 	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
 	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
-	   median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
 
 
 FROM covid19.dbo.worldData
@@ -285,7 +290,7 @@ WHERE
 	(continent = 'Africa' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY TotalInfectionPercentage desc
+ORDER BY DeathLikelyhood desc
 
 
 -- Oceania Evaluation
@@ -299,7 +304,8 @@ SELECT location,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
 	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
 	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
-	   median_age, gdp_per_capita, human_development_index, extreme_poverty
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
 
 
 FROM covid19.dbo.worldData
@@ -308,4 +314,4 @@ WHERE
 	(continent = 'Oceania' AND location <> 'World') OR location = 'Brazil'
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY TotalInfectionPercentage desc
+ORDER BY DeathLikelyhood desc
