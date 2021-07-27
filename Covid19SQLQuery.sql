@@ -192,7 +192,7 @@ WHERE
 	(continent = 'South America' AND location <> 'World')
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY StringencyIndexMax desc
+ORDER BY TotalInfectionPercentage desc
 
 
 -- North America Evaluation
@@ -214,7 +214,7 @@ WHERE
 	(continent = 'North America' AND location <> 'World')
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY StringencyIndexMax desc
+ORDER BY TotalInfectionPercentage desc
 
 
 -- Europe Evaluation
@@ -236,7 +236,7 @@ WHERE
 	(continent = 'Europe' AND location <> 'World')
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY StringencyIndexMax desc
+ORDER BY TotalInfectionPercentage desc
 
 
 -- Asia Evaluation
@@ -258,7 +258,7 @@ WHERE
 	(continent = 'Asia' AND location <> 'World')
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY StringencyIndexMax desc
+ORDER BY TotalInfectionPercentage desc
 
 
 -- Africa Evaluation
@@ -280,7 +280,7 @@ WHERE
 	(continent = 'Africa' AND location <> 'World')
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY StringencyIndexMax desc
+ORDER BY TotalInfectionPercentage desc
 
 
 -- Oceania Evaluation
@@ -302,4 +302,4 @@ WHERE
 	(continent = 'Oceania' AND location <> 'World')
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
-ORDER BY StringencyIndexMax desc
+ORDER BY TotalInfectionPercentage desc
