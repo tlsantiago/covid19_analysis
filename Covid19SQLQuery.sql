@@ -183,13 +183,35 @@ SELECT location,
 	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
 	   MAX(cast(total_deaths as int)) as TotalDeathCount,
 	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
-	    MAX(cast(stringency_index as float)) as StringencyIndexMax
-
+	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
+		median_age, gdp_per_capita, human_development_index, extreme_poverty
 
 FROM covid19.dbo.worldData
 
 WHERE 
 	(continent = 'South America' AND location <> 'World')
 
-GROUP BY location
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY StringencyIndexMax desc
+
+
+-- North America Evaluation
+
+
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	    MAX(cast(stringency_index as float)) as StringencyIndexMax,
+		median_age, gdp_per_capita, human_development_index, extreme_poverty
+
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent = 'North America' AND location <> 'World')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY StringencyIndexMax desc
