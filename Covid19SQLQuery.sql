@@ -39,7 +39,7 @@ ________________________________________________________________________________
 
 
 SELECT 
-Continent, Location, date, 
+Continent, location, date, 
 total_cases, new_cases, total_deaths, 
 new_deaths, new_vaccinations, people_fully_vaccinated, 
 stringency_index, population, median_age, 
@@ -847,3 +847,34 @@ GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_
 ) c
 
 ORDER BY DeathLikelyhood
+
+
+
+/*
+________________________________________________________________________________________________________________
+
+Brazil vs simmilar HDI countries
+We are considering the tier provided by ONU being "High Human Development" between 0,700 and 0,799
+________________________________________________________________________________________________________________
+
+*/
+
+
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(human_development_index >= 0.7 AND human_development_index <= 0.79)
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY DeathLikelyhood asc
