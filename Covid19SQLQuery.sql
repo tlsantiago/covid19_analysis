@@ -878,3 +878,38 @@ WHERE
 
 GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
 ORDER BY DeathLikelyhood asc
+
+
+/*
+________________________________________________________________________________________________________________
+
+World evaluation
+________________________________________________________________________________________________________________
+
+*/
+
+
+SELECT location,
+	   MAX(cast(Population as float)) as TotalPopulation,
+	   MAX(cast(total_cases as int)) as TotalCasesCount, 	
+	   cast((MAX(cast(total_cases as int)) /  MAX(cast(Population as float)))*100 as decimal(10,3))as TotalInfectionPercentage,
+	   MAX(cast(total_deaths as int)) as TotalDeathCount,
+	   cast((MAX(cast(total_deaths as int)) / MAX(cast(Population as float)))*100 as decimal(10,3)) as TotalDeathPercentage,
+	   MAX(cast(stringency_index as float)) as StringencyIndexMax,
+	   MAX(cast(people_fully_vaccinated as float)) as FullyVaccinatedPopulaton,
+	   median_age, gdp_per_capita, human_development_index, extreme_poverty,
+	   cast((MAX(cast(total_deaths as float)) / MAX(cast(total_cases as float)))*100 as decimal(10,3)) as DeathLikelyhood
+	   
+
+FROM covid19.dbo.worldData
+
+WHERE 
+	(continent is not null AND location <> 'World') AND
+	(continent is not null AND location <> 'South America') AND
+	(continent is not null AND location <> 'North America') AND
+	(continent is not null AND location <> 'Asia') AND
+	(continent is not null AND location <> 'European Union') AND
+	(continent is not null AND location <> 'Europe')
+
+GROUP BY location, median_age, gdp_per_capita, human_development_index, extreme_poverty
+ORDER BY location asc
