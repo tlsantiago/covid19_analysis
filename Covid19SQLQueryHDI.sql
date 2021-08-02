@@ -11,4 +11,3 @@ DELETE FROM covid19.dbo.worldDataHDI
 WHERE location is NULL
 
 -- Evaluating different HDI performances
-
