@@ -17,3 +17,6 @@ Technologies:
 
 Data source: <p><a href="https://ourworldindata.org/covid-deaths">Our World Data - Covid Deaths</a><p>
 
+------
+
+Visualization: <p><a href="https://public.tableau.com/app/profile/thyago8611/viz/COVID19_16275960838620/Dashboard?publish=yes">Tableau Public</a><p>
