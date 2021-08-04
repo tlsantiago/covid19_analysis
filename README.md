@@ -1,10 +1,9 @@
 COVID-19 evaluation focused on Brazil.
 
 The main idea of this project is evaluating data from all around the world regarding COVID-19.
-The objective is understanding how the pandemic evolved on each country, how the evolution of the virus relates to risk factors identified over the population, development indexes, stringency efficiency and other factors that may be correlated.
+The objective is understanding how each country dealt with the pandemic until the date, evaluating contamination count, death count, deah likelyhood if you are contaminated and grouping those countries into tiers.
 
-Latter on, we will evalate ONU's 4 HDI tiers (Low, Medium, High and Very High human development). Here we will consider the 5 best and 5 worst performing countries to see how countries with different HDI dealed with the pandemic and if there's a correlation between the success of contagion containment and the index itself.
-
+We will evalate using ONU's 4 HDI tiers (Low, Medium, High and Very High human development). Here we will consider the 5 best and 5 worst performing countries to see how countries with different HDI dealed with the pandemic and if there's a correlation between the success of contagion containment and the index itself.
 ------
 
 Technologies:
