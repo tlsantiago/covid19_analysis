@@ -1,4 +1,4 @@
-COVID-19 evaluation focused on Brazil.
+COVID-19 evaluation.
 
 The main idea of this project is evaluating data from all around the world regarding COVID-19.
 The objective is understanding how each country dealt with the pandemic until the date, evaluating contamination count, death count, deah likelyhood if you are contaminated and grouping those countries into tiers.
